@@ -2,7 +2,7 @@ function [ tree ] = createTree( dataset,labels,heightcount )
     len = size(dataset,1) ;
     templabel = dataset(1,end) ;
     tree = templabel ;
-    max_depth = 5 ;
+    max_depth = 5 ;%最大树高
     flag = 1 ; %判断是否数据集中所有标签都一致了（纯的），是则返回
     for i=1:len
         if templabel~=dataset(i,end) ;
@@ -15,7 +15,7 @@ function [ tree ] = createTree( dataset,labels,heightcount )
     if heightcount>max_depth
         labelVec = dataset(:,end) ;
         disp(labelVec) ;
-        element = 1:max(labelVec) ;% 此时dataset只有一列
+        element = 1:max(labelVec) ;
         counts = histc(labelVec,element) ;
         [~,max_idx] = max(counts) ;
         tree = element(max_idx) ;

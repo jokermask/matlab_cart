@@ -1,4 +1,5 @@
 function [ tree ] = createTree( dataset,labels,heightcount )
+%todo 建树会出现空节点
     len = size(dataset,1) ;
     templabel = dataset(1,end) ;
     tree = templabel ;
@@ -14,8 +15,8 @@ function [ tree ] = createTree( dataset,labels,heightcount )
     end
     if heightcount>max_depth
         labelVec = dataset(:,end) ;
-        disp(labelVec) ;
-        element = 1:max(labelVec) ;
+        %disp(labelVec) ;
+        element = sort(unique(labelVec)) ;
         counts = histc(labelVec,element) ;
         [~,max_idx] = max(counts) ;
         tree = element(max_idx) ;
